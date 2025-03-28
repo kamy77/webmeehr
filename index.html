@@ -11,46 +11,139 @@
     <style>
         body {
             font-family: 'Vazirmatn', sans-serif;
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAQdEVYdE1VpZ2UgUmVzb2x1dGlvbjcyDpiBwAAAAH0lEQVQ4y2NgYGBgYmCgYKDgYDBszAAADMQBBkZWVhYAAAAASUVORK5CYII=");
+            background-repeat: repeat;
+            background-size: 20px;
+            transition: background-color 0.5s ease; /* Smooth transition for background color */
+        }
+        body:hover {
+            background-color: #f0f4f0; /* Change background on hover for a subtle effect */
         }
         .bg-primary {
-            background-color: #0E4F00; /* سبز تیره */
+            background-color: #0E4F00;
         }
         .text-primary {
             color: #0E4F00;
         }
         .bg-secondary {
-            background-color: #F4F2EE; /* کرم خاکستری روشن */
+            background-color: #F4F2EE;
         }
         .text-secondary{
              color: #F4F2EE;
         }
-
         .bg- پذیرفته شده {
-            background-color: #D6D2C4; /* کرم خاکستری */
+            background-color: #D6D2C4;
         }
         .text-پذیرفته شده {
             color: #D6D2C4;
         }
-
         .bg-accent-1 {
-            background-color: #81E4E3; /* آبی روشن */
+            background-color: #81E4E3;
         }
         .text-accent-1{
              color: #81E4E3;
         }
-
         .bg-accent-2 {
-            background-color: #FFCD00; /* زرد */
+            background-color: #FFCD00;
         }
          .text-accent-2{
              color: #FFCD00;
         }
-
         .bg-accent-3 {
-            background-color: #FF8200; /* نارنجی */
+            background-color: #FF8200;
         }
         .text-accent-3{
             color: #FF8200;
+        }
+
+        /* New styles for enhanced UI - Card effects, shadows, transitions */
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+        }
+        .card:hover {
+            transform: translateY(-0.5rem); /* Slight lift on hover */
+            box-shadow: 0 12px 16px -1px rgba(0, 0, 0, 0.1), 0 6px 8px -1px rgba(0, 0, 0, 0.08);
+        }
+        .btn-primary {
+            background-color: #0E4F00;
+            color: #F4F2EE;
+            padding: 0.8rem 1.6rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn-primary:hover {
+            background-color: #0B3E00;  /* Darker shade on hover */
+            transform: scale(1.05);
+        }
+        .btn-primary:active{
+             transform: scale(1);
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #0E4F00;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            animation: fadeIn 1s ease, slideInDown 0.5s ease; /* Added animation */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInDown {
+            from { transform: translateY(-20px); }
+            to { transform: translateY(0); }
+        }
+
+        .feature-item {
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            background-color: #F4F2EE;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.75rem;
+        }
+        .feature-item:hover {
+            transform: translateY(-0.25rem);
+            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 3px 4px -1px rgba(0, 0, 0, 0.08);
+        }
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 0.5rem;
+            color: #0E4F00; /* Example icon color */
+        }
+        .icon{
+            width: 2rem;
+            height: 2rem;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) { /* Medium screens and below (md breakpoint in Tailwind is 768px) */
+            .grid-cols-md-2 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)); /* Revert to single column on small screens */
+            }
+            .md\:grid-cols-3 {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+             .section-title{
+                font-size: 1.875rem; /* Smaller heading on mobile */
+            }
         }
     </style>
 </head>
@@ -71,91 +164,125 @@
     </header>
 
     <main class="container mx-auto mt-8 p-4">
-        <section id="معرفی" class="bg-secondary rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-primary mb-4">به بانک قرض الحسنه مهر ایران خوش آمدید</h2>
+        <section id="معرفی" class="bg-secondary rounded-lg shadow-md p-6 mb-8 card">
+            <h2 class="text-2xl font-bold text-primary mb-4 section-title">به بانک قرض الحسنه مهر ایران خوش آمدید</h2>
             <p class="text-gray-700">
                 بانک قرض الحسنه مهر ایران، با هدف ترویج فرهنگ قرض الحسنه و ارائه خدمات مالی اسلامی، فعالیت می کند. ما تلاش می کنیم تا با ارائه تسهیلات قرض الحسنه، به بهبود وضعیت اقتصادی افراد جامعه کمک کنیم.
             </p>
             <p class="text-gray-700 mt-4">
                 این بانک با تمرکز بر ارائه خدمات الکترونیکی و تسهیل دسترسی هموطنان به خدمات بانکی، گامی مهم در جهت توسعه بانکداری اسلامی در کشور برداشته است.
             </p>
+            <button class="btn-primary mt-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                    <path d="M10.75 4.901a7.97 7.97 0 0 1 1.563 3.314 7.993 7.993 0 0 0-3.976 3.976 7.97 7.97 0 0 1-3.314-1.563A7.93 7.93 0 0 0 3.102 10a8 8 0 1 0 15.796 0 7.932 7.932 0 0 0-2.35-5.099Z" />
+                </svg>
+                <span>مشاهده بیشتر</span>
+            </button>
         </section>
 
         <section id="آمار" class="bg- پذيرفته شده rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-primary mb-4">آمار و ارقام</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+            <h2 class="text-2xl font-bold text-primary mb-4 section-title">آمار و ارقام</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                        <path d="M2 17v-4c0-1.1.9-2 2-2h2"></path>
+                        <path d="M20 17v-4c0-1.1-.9-2-2-2h-2"></path>
+                        <path d="M6 18v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"></path>
+                    </svg>
                     <h3 class="text-lg font-semibold text-primary mb-2">تعداد شعب فعال</h3>
                     <p class="text-gray-600">511 شعبه</p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد شهرستان های دارای شعبه</h3>
+                <div class="card feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <path d="M12 2l9.5 5.5-3 5.5-6.5 3.5V19l-3-2v-7.5L2.5 7.5 12 2z"></path>
+                        <circle cx="12" cy="17" r="3"></circle>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد شهرستان ها</h3>
                     <p class="text-gray-600">337 شهرستان</p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد خودپردازهای فعال</h3>
+                <div class="card feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <path d="M22 10h-6"></path>
+                        <path d="M6 10h-2"></path>
+                        <path d="M6 14h-2"></path>
+                        <path d="M10 14h-2"></path>
+                        <path d="M14 14h-2"></path>
+                        <path d="M18 14h-2"></path>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد خودپردازها</h3>
                     <p class="text-gray-600">1479 دستگاه</p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد پایانه های فروشگاهی</h3>
+                <div class="card feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <path d="M4.5 9H19.5"></path>
+                        <path d="M7 15H17"></path>
+                        <path d="M12 19V9"></path>
+                        <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-primary mb-2">پایانه های فروشگاهی</h3>
                     <p class="text-gray-600">610420 دستگاه</p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد حساب های قرض الحسنه</h3>
+                <div class="card feature-item">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <path d="M2 9.5A3.5 3.5 0 0 1 5.5 6H6l3 3"></path>
+                        <path d="M18.5 6A3.5 3.5 0 0 1 22 9.5V15a3.5 3.5 0 0 1-3.5 3.5H18l-3-3"></path>
+                        <path d="M15 15v2a4 4 0 0 0 4-4H15"></path>
+                        <path d="M9 9V7a4 4 0 0 0-4 4h4"></path>
+                    </svg>
+                    <h3 class="text-lg font-semibold text-primary mb-2">حساب های قرض الحسنه</h3>
                     <p class="text-gray-600">25.505.681 فقره</p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="card feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
                     <h3 class="text-lg font-semibold text-primary mb-2">تعداد مشتریان</h3>
                     <p class="text-gray-600">17.870.425 نفر</p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <h3 class="text-lg font-semibold text-primary mb-2">نسبت کفایت سرمایه</h3>
-                    <p class="text-gray-600">0.52 درصد</p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <h3 class="text-lg font-semibold text-primary mb-2">نسبت مطالبات به کل تسهیلات</h3>
-                    <p class="text-gray-600">9.76 درصد</p>
                 </div>
             </div>
         </section>
 
-        <section id="عقود-اسلامی" class="bg-secondary rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-primary mb-4">عقود بانکی اسلامی</h2>
+        <section id="عقود-اسلامی" class="bg-secondary rounded-lg shadow-md p-6 mb-8 card">
+            <h2 class="text-2xl font-bold text-primary mb-4 section-title">عقود بانکی اسلامی</h2>
             <p class="text-gray-700 mb-4">
                 بانک قرض الحسنه مهر ایران، در راستای تطابق با اصول بانکداری اسلامی، از عقود زیر در ارائه خدمات خود استفاده می کند:
             </p>
             <div class="space-y-4">
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
                     <h3 class="text-lg font-semibold text-primary mb-2">قرض الحسنه</h3>
                     <p class="text-gray-600">
                         <span class="font-semibold">توضیحات:</span> قرض الحسنه، وامی است که بدون دریافت هیچگونه سود یا بهره ای به افراد نیازمند پرداخت می شود. بانک قرض الحسنه مهر ایران، به عنوان یک بانک قرض الحسنه، تمرکز ویژه ای بر این عقد دارد.
                     </p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
                     <h3 class="text-lg font-semibold text-primary mb-2">مضاربه</h3>
                     <p class="text-gray-600">
                         <span class="font-semibold">توضیحات:</span> مضاربه، قراردادی است بین بانک (به عنوان تامین کننده سرمایه) و فرد (به عنوان عامل) که در آن، عامل با سرمایه بانک به تجارت می پردازد و در سود حاصله، هر دو شریک هستند.
                     </p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
                     <h3 class="text-lg font-semibold text-primary mb-2">مشارکت مدنی</h3>
                     <p class="text-gray-600">
                         <span class="font-semibold">توضیحات:</span> مشارکت مدنی، قراردادی است بین بانک و فرد یا شرکت، برای انجام یک پروژه یا فعالیت اقتصادی. هر دو طرف در سود و زیان حاصل از پروژه شریک هستند.
                     </p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
                     <h3 class="text-lg font-semibold text-primary mb-2">اجاره به شرط تملیک</h3>
                     <p class="text-gray-600">
                        <span class="font-semibold">توضیحات:</span> در این نوع قرارداد، بانک، مالک یک کالا یا دارایی است و آن را به مشتری اجاره می دهد. در پایان مدت اجاره، در صورت عمل به شروط قرارداد، مالکیت کالا به مشتری منتقل می شود.
                     </p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
                     <h3 class="text-lg font-semibold text-primary mb-2">فروش اقساطی</h3>
                     <p class="text-gray-600">
                         <span class="font-semibold">توضیحات:</span> فروش اقساطی، قراردادی است که بانک، کالایی را به صورت نقد خریداری کرده و سپس آن را به صورت اقساط به مشتری می فروشد.
                     </p>
                 </div>
-                 <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                 <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
                     <h3 class="text-lg font-semibold text-primary mb-2">جعاله</h3>
                     <p class="text-gray-600">
                         <span class="font-semibold">توضیحات:</span> جعاله، قراردادی است که در آن، کارفرما (بانک) انجام کار معینی را به شخص دیگری (پیمانکار یا عامل) واگذار می کند و در ازای آن، مبلغ مشخصی را به عنوان اجرت تعیین می کند.
@@ -165,92 +292,31 @@
         </section>
 
         <section id="خدمات" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-primary mb-4">خدمات ما</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+            <h2 class="text-2xl font-bold text-primary mb-4 section-title">خدمات ما</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card feature-item">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
+                        <polyline points="4 8 10 12 16 8"></polyline>
+                    </svg>
                     <h3 class="text-lg font-semibold text-primary mb-2">حساب های قرض الحسنه</h3>
                     <p class="text-gray-600">افتتاح انواع حساب های قرض الحسنه پس انداز و جاری</p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <path d="M20 12v3h-2v4h-6v-4H8v-3"></path>
+                        <circle cx="12" cy="7" r="5"></circle>
+                    </svg>
                     <h3 class="text-lg font-semibold text-primary mb-2">تسهیلات قرض الحسنه</h3>
                     <p class="text-gray-600">ارائه تسهیلات قرض الحسنه برای ازدواج، درمان، تحصیل و سایر نیازهای ضروری</p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
                     <h3 class="text-lg font-semibold text-primary mb-2">خدمات الکترونیکی</h3>
                     <p class="text-gray-600">خدمات بانکداری اینترنتی، همراه بانک و سایر خدمات الکترونیکی</p>
                 </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <h3 class="text-lg font-semibold text-primary mb-2">همیاران مهر</h3>
-                    <p class="text-gray-600">طرح همیاری برای کمک به نیازمندان</p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <h3 class="text-lg font-semibold text-primary mb-2">پرداخت اقساط</h3>
-                    <p class="text-gray-600">امکان پرداخت آسان اقساط تسهیلات</p>
-                </div>
-                 <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <h3 class="text-lg font-semibold text-primary mb-2">افتتاح حساب آنلاین</h3>
-                    <p class="text-gray-600">افتتاح حساب غیر حضوری و آنلاین</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="تسهیلات" class="bg-primary rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-secondary mb-4">تسهیلات</h2>
-            <p class="text-secondary-content mb-4">
-                بانک قرض الحسنه مهر ایران، تسهیلات قرض الحسنه را با شرایط آسان و کارمزد پایین به افراد واجد شرایط ارائه می دهد.
-            </p>
-            <ul class="list-disc list-inside text-secondary-content">
-                <li>تسهیلات ازدواج</li>
-                <li>تسهیلات درمان</li>
-                <li>تسهیلات تحصیل</li>
-                 <li>تسهیلات اشتغال</li>
-                <li>تسهیلات مسکن</li>
-                <li>سایر تسهیلات ضروری</li>
-            </ul>
-        </section>
-
-        <section id="درباره-ما" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-primary mb-4">درباره ما</h2>
-            <p class="text-gray-700">
-                بانک قرض الحسنه مهر ایران، به عنوان اولین بانک قرض الحسنه کشور، با هدف ترویج فرهنگ قرض الحسنه و ارائه خدمات مالی اسلامی تاسیس شده است. ما تلاش می کنیم تا با ارائه خدمات نوین بانکی، تجربه ای متفاوت از بانکداری را برای مشتریان خود رقم بزنیم.
-            </p>
-            <p class="text-gray-700 mt-4">
-                این بانک با بهره گیری از فناوری های نوین و تخصص کارشناسان مجرب، خدمات متنوعی را در حوزه بانکداری الکترونیک ارائه می دهد.
-            </p>
-        </section>
-
-        <section id="تماس-با-ما" class="bg-primary rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-secondary mb-4">تماس با ما</h2>
-            <p class="text-secondary-content">
-                شما می توانید از طریق راه های زیر با ما در ارتباط باشید:
-            </p>
-            <ul class="list-disc list-inside text-secondary-content">
-                <li>تلفن: <span class="font-semibold text-secondary">021-12345678</span></li>
-                <li>ایمیل: <span class="font-semibold text-secondary">info@qmb.ir</span></li>
-                <li>آدرس: <span class="font-semibold text-secondary">تهران، خیابان ...</span></li>
-            </ul>
-            <div class="mt-4">
-                <a href="https://www.qmb.ir/branches" target="_blank" class="text-accent-1 hover:text-accent-2 no-underline">
-                    یافتن نزدیکترین شعبه
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-200 text-gray-700 py-4 text-center rounded-md">
-        <p>© کلیه حقوق این سایت متعلق به بانک قرض الحسنه مهر ایران است.</p>
-    </footer>
-
-    <script>
-        // اسکریپت جاوا اسکریپت برای بهبود تجربه کاربری (اختیاری)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                        <path d="M21.882 2.213a
