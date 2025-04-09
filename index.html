@@ -1,323 +1,186 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بانک قرض الحسنه مهر ایران</title>
-    <title>خوش و بش </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>فروشگاه لوازم تحریر Sevooli</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAQdEVYdE1VpZ2UgUmVzb2x1dGlvbjcyDpiBwAAAAH0lEQVQ4y2NgYGBgYmCgYKDgYDBszAAADMQBBkZWVhYAAAAASUVORK5CYII=");
-            background-repeat: repeat;
-            background-size: 20px;
-            transition: background-color 0.5s ease;
-        }
-        body:hover {
-            background-color: #f0f4f0;
-        }
-        .bg-primary {
-            background-color: #0E4F00;
-        }
-        .text-primary {
-            color: #0E4F00;
-        }
-        .bg-secondary {
-            background-color: #F4F2EE;
-        }
-        .text-secondary{
-             color: #F4F2EE;
-        }
-        .bg- پذیرفته شده {
-            background-color: #D6D2C4;
-        }
-        .text-پذیرفته شده {
-            color: #D6D2C4;
-        }
-        .bg-accent-1 {
-            background-color: #81E4E3;
-        }
-        .text-accent-1{
-             color: #81E4E3;
-        }
-        .bg-accent-2 {
-            background-color: #FFCD00;
-        }
-         .text-accent-2{
-             color: #FFCD00;
-        }
-        .bg-accent-3 {
-            background-color: #FF8200;
-        }
-        .text-accent-3{
-            color: #FF8200;
-        }
+      @font-face {
+        font-family: 'LucideIcons';
+        src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
+      }
+      .lucide {
+        font-family: 'LucideIcons';
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+      }
+      /* Simple animation for elements */
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      .fade-in {
+          animation: fadeIn 0.5s ease-out forwards;
+      }
+      /* Custom Vazirmatn font */
+      @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+      body {
+        font-family: 'Vazirmatn', sans-serif;
+        background-color: #fdf0f4; /* Soft pink background */
+      }
+      /* Custom pastel colors */
+      .bg-pastel-pink { background-color: #fce4ec; }
+      .text-pastel-pink { color: #fce4ec; }
+      .border-pastel-pink { border-color: #fce4ec; }
 
-        /* New styles */
-        .card {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 12px 16px -1px rgba(0, 0, 0, 0.1), 0 6px 8px -1px rgba(0, 0, 0, 0.08);
-        }
-        .btn-primary {
-            background-color: #0E4F00;
-            color: #F4F2EE;
-            padding: 0.8rem 1.6rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        .btn-primary:hover {
-            background-color: #0B3E00;
-            transform: scale(1.05);
-        }
-        .btn-primary:active{
-             transform: scale(1);
-             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+      .bg-pastel-blue { background-color: #e3f2fd; }
+      .text-pastel-blue { color: #e3f2fd; }
+      .border-pastel-blue { border-color: #e3f2fd; }
 
-        .section-title {
-            font-size: 2.25rem;
-            font-weight: bold;
-            color: #0E4F00;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            animation: fadeIn 1s ease, slideInDown 0.5s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideInDown {
-            from { transform: translateY(-20px); }
-            to { transform: translateY(0); }
-        }
+      .bg-pastel-purple { background-color: #ede7f6; }
+      .text-pastel-purple { color: #ede7f6; }
+      .border-pastel-purple { border-color: #ede7f6; }
 
-        .feature-item {
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            background-color: #F4F2EE;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 0.75rem;
-        }
-        .feature-item:hover {
-            transform: translateY(-0.25rem);
-            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 3px 4px -1px rgba(0, 0, 0, 0.08);
-        }
-        .feature-icon {
-            width: 3rem;
-            height: 3rem;
-            margin-bottom: 0.5rem;
-            color: #0E4F00;
-        }
-        .icon{
-            width: 2rem;
-            height: 2rem;
-        }
+      .text-cute-dark { color: #6a4a5a; } /* Darker color for text contrast */
+      .bg-cute-accent { background-color: #ffacd1; } /* Accent pink */
+      .hover\:bg-cute-accent-dark:hover { background-color: #f78fb9; }
 
-        /* Responsive adjustments for smaller screens */
-        @media (max-width: 768px) {
-            .grid-cols-md-2 {
-                grid-template-columns: repeat(1, minmax(0, 1fr));
-            }
-            .md\:grid-cols-3 {
-                grid-template-columns: repeat(1, minmax(0, 1fr));
-            }
-             .section-title{
-                font-size: 1.875rem;
-            }
-        }
     </style>
 </head>
-<body class="bg-gray-100">
-    <header class="bg-primary text-secondary py-4 flex justify-between items-center shadow-md sticky top-0 z-10 rounded-md">
-        <div class="logo flex items-center mr-4">
-            <img src="https://www.qmb.ir/themes/qmb/images/logo.svg" alt="بانک مهر ایران" class="h-12 ml-4">
-            <span class="font-bold text-xl">بانک قرض الحسنه مهر ایران</span>
-        </div>
-        <nav class="mr-8">
-            <ul class="flex space-x-4">
-                <li><a href="#خدمات" class="hover:text-green-200 no-underline">خدمات</a></li>
-                <li><a href="#تسهیلات" class="hover:text-green-200 no-underline">تسهیلات</a></li>
-                <li><a href="#درباره-ما" class="hover:text-green-200 no-underline">درباره ما</a></li>
-                <li><a href="#تماس-با-ما" class="hover:text-green-200 no-underline">تماس با ما</a></li>
-            </ul>
+<body class="bg-gray-50 text-cute-dark">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-cute-dark flex items-center">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffacd1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/><path d="M12 12m-2 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0"/></svg>
+                Sevooli
+            </div>
+            <button id="menu-button" class="md:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-300">
+                <span class="lucide text-2xl text-cute-dark">menu</span>
+            </button>
+            <div class="hidden md:flex space-x-6 space-x-reverse">
+                <a href="#" class="hover:text-pink-500">خانه</a>
+                <a href="#products" class="hover:text-pink-500">محصولات</a>
+                <a href="#" class="hover:text-pink-500">درباره ما</a>
+                <a href="#" class="hover:text-pink-500">تماس با ما</a>
+            </div>
         </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <a href="#" class="block px-4 py-3 text-sm hover:bg-pastel-pink">خانه</a>
+            <a href="#products" class="block px-4 py-3 text-sm hover:bg-pastel-pink">محصولات</a>
+            <a href="#" class="block px-4 py-3 text-sm hover:bg-pastel-pink">درباره ما</a>
+            <a href="#" class="block px-4 py-3 text-sm hover:bg-pastel-pink">تماس با ما</a>
+        </div>
     </header>
 
-    <main class="container mx-auto mt-8 p-4">
-        <section id="معرفی" class="bg-secondary rounded-lg shadow-md p-6 mb-8 card">
-            <h2 class="text-2xl font-bold text-primary mb-4 section-title">به بانک قرض الحسنه مهر ایران خوش آمدید</h2>
-            <p class="text-gray-700">
-                بانک قرض الحسنه مهر ایران، با هدف ترویج فرهنگ قرض الحسنه و ارائه خدمات مالی اسلامی، فعالیت می کند. ما تلاش می کنیم تا با ارائه تسهیلات قرض الحسنه، به بهبود وضعیت اقتصادی افراد جامعه کمک کنیم.
-            </p>
-            <p class="text-gray-700 mt-4">
-                این بانک با تمرکز بر ارائه خدمات الکترونیکی و تسهیل دسترسی هموطنان به خدمات بانکی، گامی مهم در جهت توسعه بانکداری اسلامی در کشور برداشته است.
-            </p>
-            <button class="btn-primary mt-6">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-                    <path d="M10.75 4.901a7.97 7.97 0 0 1 1.563 3.314 7.993 7.993 0 0 0-3.976 3.976 7.97 7.97 0 0 1-3.314-1.563A7.93 7.93 0 0 0 3.102 10a8 8 0 1 0 15.796 0 7.932 7.932 0 0 0-2.35-5.099Z" />
-                </svg>
-                <span>مشاهده بیشتر</span>
-            </button>
+    <main class="container mx-auto px-4 py-8">
+
+        <section class="text-center mb-12 fade-in">
+             <img src="https://placehold.co/150x150/fce4ec/6a4a5a?text=^_^" alt="[تصویر بامزه]" class="mx-auto mb-4 rounded-full shadow-lg border-4 border-white">
+            <h1 class="text-3xl md:text-4xl font-bold mb-3 text-cute-dark">به دنیای کیوت ما خوش آمدید!</h1>
+            <p class="text-lg text-gray-600 mb-6">خاص‌ترین و بامزه‌ترین لوازم تحریر رو اینجا پیدا کن.</p>
+            <a href="#products" class="bg-cute-accent text-white px-8 py-3 rounded-full font-semibold hover:bg-cute-accent-dark transition duration-300 shadow-md">مشاهده محصولات</a>
         </section>
 
-        <section id="آمار" class="bg- پذيرفته شده rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-primary mb-4 section-title">آمار و ارقام</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="card feature-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                        <path d="M2 17v-4c0-1.1.9-2 2-2h2"></path>
-                        <path d="M20 17v-4c0-1.1-.9-2-2-2h-2"></path>
-                        <path d="M6 18v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"></path>
-                    </svg>
-                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد شعب فعال</h3>
-                    <p class="text-gray-600">511 شعبه</p>
+        <section id="products" class="mb-12">
+            <h2 class="text-2xl font-bold text-center mb-8 text-cute-dark">محصولات جدید و کیوت</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 fade-in" style="animation-delay: 0.1s;">
+                    <img src="https://placehold.co/300x300/e3f2fd/6a4a5a?text=دفترچه" alt="[تصویر دفترچه یادداشت بامزه]" class="w-full h-40 object-cover" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=خطا در بارگذاری'">
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1 text-cute-dark">دفترچه طرح گربه</h3>
+                        <p class="text-sm text-gray-500 mb-2">یه دفترچه نرم و دوست‌داشتنی</p>
+                        <span class="font-bold text-pink-500">۴۵٬۰۰۰ تومان</span>
+                        <button class="mt-3 w-full bg-cute-accent text-white text-sm py-2 rounded-md hover:bg-cute-accent-dark transition duration-300">افزودن به سبد</button>
+                    </div>
                 </div>
-                <div class="card feature-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <path d="M12 2l9.5 5.5-3 5.5-6.5 3.5V19l-3-2v-7.5L2.5 7.5 12 2z"></path>
-                        <circle cx="12" cy="17" r="3"></circle>
-                    </svg>
-                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد شهرستان ها</h3>
-                    <p class="text-gray-600">337 شهرستان</p>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 fade-in" style="animation-delay: 0.2s;">
+                    <img src="https://placehold.co/300x300/fce4ec/6a4a5a?text=مداد" alt="[تصویر ست مداد رنگی پاستلی]" class="w-full h-40 object-cover" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=خطا در بارگذاری'">
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1 text-cute-dark">ست مداد پاستلی</h3>
+                        <p class="text-sm text-gray-500 mb-2">رنگ‌های ملایم و زیبا</p>
+                        <span class="font-bold text-pink-500">۶۰٬۰۰۰ تومان</span>
+                         <button class="mt-3 w-full bg-cute-accent text-white text-sm py-2 rounded-md hover:bg-cute-accent-dark transition duration-300">افزودن به سبد</button>
+                    </div>
                 </div>
-                <div class="card feature-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                        <path d="M22 10h-6"></path>
-                        <path d="M6 10h-2"></path>
-                        <path d="M6 14h-2"></path>
-                        <path d="M10 14h-2"></path>
-                        <path d="M14 14h-2"></path>
-                        <path d="M18 14h-2"></path>
-                        <circle cx="12" cy="12" r="2"></circle>
-                    </svg>
-                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد خودپردازها</h3>
-                    <p class="text-gray-600">1479 دستگاه</p>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 fade-in" style="animation-delay: 0.3s;">
+                    <img src="https://placehold.co/300x300/ede7f6/6a4a5a?text=پاک‌کن" alt="[تصویر پاک‌کن‌های فانتزی]" class="w-full h-40 object-cover" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=خطا در بارگذاری'">
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1 text-cute-dark">پاک‌کن‌های فانتزی</h3>
+                        <p class="text-sm text-gray-500 mb-2">طرح‌های متنوع و بامزه</p>
+                        <span class="font-bold text-pink-500">۱۵٬۰۰۰ تومان</span>
+                         <button class="mt-3 w-full bg-cute-accent text-white text-sm py-2 rounded-md hover:bg-cute-accent-dark transition duration-300">افزودن به سبد</button>
+                    </div>
                 </div>
-                <div class="card feature-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <path d="M4.5 9H19.5"></path>
-                        <path d="M7 15H17"></path>
-                        <path d="M12 19V9"></path>
-                        <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
-                    </svg>
-                    <h3 class="text-lg font-semibold text-primary mb-2">پایانه های فروشگاهی</h3>
-                    <p class="text-gray-600">610420 دستگاه</p>
+
+                 <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 fade-in" style="animation-delay: 0.4s;">
+                    <img src="https://placehold.co/300x300/fff9c4/6a4a5a?text=چسب" alt="[تصویر چسب نواری طرح‌دار]" class="w-full h-40 object-cover" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=خطا در بارگذاری'">
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1 text-cute-dark">چسب نواری طرح‌دار</h3>
+                        <p class="text-sm text-gray-500 mb-2">برای خوشگلسازی دفتر و کتاب</p>
+                        <span class="font-bold text-pink-500">۲۵٬۰۰۰ تومان</span>
+                         <button class="mt-3 w-full bg-cute-accent text-white text-sm py-2 rounded-md hover:bg-cute-accent-dark transition duration-300">افزودن به سبد</button>
+                    </div>
                 </div>
-                <div class="card feature-item">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <path d="M2 9.5A3.5 3.5 0 0 1 5.5 6H6l3 3"></path>
-                        <path d="M18.5 6A3.5 3.5 0 0 1 22 9.5V15a3.5 3.5 0 0 1-3.5 3.5H18l-3-3"></path>
-                        <path d="M15 15v2a4 4 0 0 0 4-4H15"></path>
-                        <path d="M9 9V7a4 4 0 0 0-4 4h4"></path>
-                    </svg>
-                    <h3 class="text-lg font-semibold text-primary mb-2">حساب های قرض الحسنه</h3>
-                    <p class="text-gray-600">25.505.681 فقره</p>
-                </div>
-                <div class="card feature-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    <h3 class="text-lg font-semibold text-primary mb-2">تعداد مشتریان</h3>
-                    <p class="text-gray-600">17.870.425 نفر</p>
-                </div>
+                 </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-pastel-pink text-cute-dark py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">&copy; ۱۴۰۳ فروشگاه لوازم تحریر Sevooli. تمام حقوق محفوظ است.</p>
+            <div class="flex justify-center space-x-4 space-x-reverse">
+                <a href="#" class="hover:text-pink-500"><span class="lucide">instagram</span></a>
+                <a href="#" class="hover:text-pink-500"><span class="lucide">send</span></a> <a href="#" class="hover:text-pink-500"><span class="lucide">twitter</span></a>
             </div>
-        </section>
+        </div>
+    </footer>
 
-        <section id="عقود-اسلامی" class="bg-secondary rounded-lg shadow-md p-6 mb-8 card">
-            <h2 class="text-2xl font-bold text-primary mb-4 section-title">عقود بانکی اسلامی</h2>
-            <p class="text-gray-700 mb-4">
-                بانک قرض الحسنه مهر ایران، در راستای تطابق با اصول بانکداری اسلامی، از عقود زیر در ارائه خدمات خود استفاده می کند:
-            </p>
-            <div class="space-y-4">
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
-                    <h3 class="text-lg font-semibold text-primary mb-2">قرض الحسنه</h3>
-                    <p class="text-gray-600">
-                        <span class="font-semibold">توضیحات:</span> قرض الحسنه، وامی است که بدون دریافت هیچگونه سود یا بهره ای به افراد نیازمند پرداخت می شود. بانک قرض الحسنه مهر ایران، به عنوان یک بانک قرض الحسنه، تمرکز ویژه ای بر این عقد دارد.
-                    </p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
-                    <h3 class="text-lg font-semibold text-primary mb-2">مضاربه</h3>
-                    <p class="text-gray-600">
-                        <span class="font-semibold">توضیحات:</span> مضاربه، قراردادی است بین بانک (به عنوان تامین کننده سرمایه) و فرد (به عنوان عامل) که در آن، عامل با سرمایه بانک به تجارت می پردازد و در سود حاصله، هر دو شریک هستند.
-                    </p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
-                    <h3 class="text-lg font-semibold text-primary mb-2">مشارکت مدنی</h3>
-                    <p class="text-gray-600">
-                        <span class="font-semibold">توضیحات:</span> مشارکت مدنی، قراردادی است بین بانک و فرد یا شرکت، برای انجام یک پروژه یا فعالیت اقتصادی. هر دو طرف در سود و زیان حاصل از پروژه شریک هستند.
-                    </p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
-                    <h3 class="text-lg font-semibold text-primary mb-2">اجاره به شرط تملیک</h3>
-                    <p class="text-gray-600">
-                       <span class="font-semibold">توضیحات:</span> در این نوع قرارداد، بانک، مالک یک کالا یا دارایی است و آن را به مشتری اجاره می دهد. در پایان مدت اجاره، در صورت عمل به شروط قرارداد، مالکیت کالا به مشتری منتقل می شود.
-                    </p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
-                    <h3 class="text-lg font-semibold text-primary mb-2">فروش اقساطی</h3>
-                    <p class="text-gray-600">
-                        <span class="font-semibold">توضیحات:</span> فروش اقساطی، قراردادی است که بانک، کالایی را به صورت نقد خریداری کرده و سپس آن را به صورت اقساط به مشتری می فروشد.
-                    </p>
-                </div>
-                 <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card">
-                    <h3 class="text-lg font-semibold text-primary mb-2">جعاله</h3>
-                    <p class="text-gray-600">
-                        <span class="font-semibold">توضیحات:</span> جعاله، قراردادی است که در آن، کارفرما (بانک) انجام کار معینی را به شخص دیگری (پیمانکار یا عامل) واگذار می کند و در ازای آن، مبلغ مشخصی را به عنوان اجرت تعیین می کند.
-                    </p>
-                </div>
-            </div>
-        </section>
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        <section id="خدمات" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-primary mb-4 section-title">خدمات ما</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card feature-item">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
-                        <polyline points="4 8 10 12 16 8"></polyline>
-                    </svg>
-                    <h3 class="text-lg font-semibold text-primary mb-2">حساب های قرض الحسنه</h3>
-                    <p class="text-gray-600">افتتاح انواع حساب های قرض الحسنه پس انداز و جاری</p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card feature-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <path d="M20 12v3h-2v4h-6v-4H8v-3"></path>
-                        <circle cx="12" cy="7" r="5"></circle>
-                    </svg>
-                    <h3 class="text-lg font-semibold text-primary mb-2">تسهیلات قرض الحسنه</h3>
-                    <p class="text-gray-600">ارائه تسهیلات قرض الحسنه برای ازدواج، درمان، تحصیل و سایر نیازهای ضروری</p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card feature-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                    </svg>
-                    <h3 class="text-lg font-semibold text-primary mb-2">خدمات الکترونیکی</h3>
-                    <p class="text-gray-600">خدمات بانکداری اینترنتی، همراه بانک و سایر خدمات الکترونیکی</p>
-                </div>
-                <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors card feature-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                        <path d="M21.882 2.213a3 3 0 0 0-4.242 0l-13.93 13.93a3 3 0 0 0 0 4.244l1.565 1.565a3 3 0 0 0 4.242 0l13.93-13.93a3 3 0 0 0 0-
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Change icon based on menu state
+            const icon = menuButton.querySelector('.lucide');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.textContent = 'menu'; // Show menu icon
+            } else {
+                icon.textContent = 'x'; // Show close icon
+            }
+        });
+
+        // Add fade-in animation to elements when they enter viewport (optional, requires intersection observer)
+        const animatedElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target); // Optional: stop observing after animation
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger animation when 10% of the element is visible
+
+        animatedElements.forEach(el => {
+            el.style.animationPlayState = 'paused'; // Pause animation initially
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
