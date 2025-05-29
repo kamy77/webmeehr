@@ -3,184 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فروشگاه لوازم تحریر Sevooli</title>
+    <title>شمارشگر پول</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @font-face {
-        font-family: 'LucideIcons';
-        src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
-      }
-      .lucide {
-        font-family: 'LucideIcons';
-        font-style: normal;
-        font-weight: normal;
-        line-height: 1;
-        letter-spacing: normal;
-        text-transform: none;
-        display: inline-block;
-        white-space: nowrap;
-        word-wrap: normal;
-        direction: ltr;
-        -webkit-font-feature-settings: 'liga';
-        -webkit-font-smoothing: antialiased;
-      }
-      /* Simple animation for elements */
-      @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-      }
-      .fade-in {
-          animation: fadeIn 0.5s ease-out forwards;
-      }
-      /* Custom Vazirmatn font */
-      @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
-      body {
-        font-family: 'Vazirmatn', sans-serif;
-        background-color: #fdf0f4; /* Soft pink background */
-      }
-      /* Custom pastel colors */
-      .bg-pastel-pink { background-color: #fce4ec; }
-      .text-pastel-pink { color: #fce4ec; }
-      .border-pastel-pink { border-color: #fce4ec; }
-
-      .bg-pastel-blue { background-color: #e3f2fd; }
-      .text-pastel-blue { color: #e3f2fd; }
-      .border-pastel-blue { border-color: #e3f2fd; }
-
-      .bg-pastel-purple { background-color: #ede7f6; }
-      .text-pastel-purple { color: #ede7f6; }
-      .border-pastel-purple { border-color: #ede7f6; }
-
-      .text-cute-dark { color: #6a4a5a; } /* Darker color for text contrast */
-      .bg-cute-accent { background-color: #ffacd1; } /* Accent pink */
-      .hover\:bg-cute-accent-dark:hover { background-color: #f78fb9; }
-
+        /* Custom font for better Persian display */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            direction: rtl; /* Set text direction to right-to-left for Persian */
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #3b82f6; /* Blue-500 */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-cute-dark">
+<body class="bg-gradient-to-br from-blue-100 to-purple-200 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md transform transition-all duration-300 hover:scale-105">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">شمارشگر پول</h1>
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="text-2xl font-bold text-cute-dark flex items-center">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffacd1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/><path d="M12 12m-2 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0"/></svg>
-                Sevooli
+        <div class="space-y-6">
+            <div class="flex items-center justify-between bg-purple-50 p-4 rounded-lg shadow-sm">
+                <label for="note200000" class="text-lg font-medium text-gray-700 w-1/2">تعداد اسکناس ۲۰۰,۰۰۰ تومانی:</label>
+                <input type="number" id="note200000" min="0" value="0"
+                       class="w-1/2 p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-center text-lg font-semibold text-gray-800">
             </div>
-            <button id="menu-button" class="md:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-300">
-                <span class="lucide text-2xl text-cute-dark">menu</span>
+
+            <div class="flex items-center justify-between bg-blue-50 p-4 rounded-lg shadow-sm">
+                <label for="note100000" class="text-lg font-medium text-gray-700 w-1/2">تعداد اسکناس ۱۰۰,۰۰۰ تومانی:</label>
+                <input type="number" id="note100000" min="0" value="0"
+                       class="w-1/2 p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-lg font-semibold text-gray-800">
+            </div>
+
+            <div class="flex items-center justify-between bg-green-50 p-4 rounded-lg shadow-sm">
+                <label for="note50000" class="text-lg font-medium text-gray-700 w-1/2">تعداد اسکناس ۵۰,۰۰۰ تومانی:</label>
+                <input type="number" id="note50000" min="0" value="0"
+                       class="w-1/2 p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-center text-lg font-semibold text-gray-800">
+            </div>
+
+            <div class="flex items-center justify-between bg-yellow-50 p-4 rounded-lg shadow-sm">
+                <label for="note10000" class="text-lg font-medium text-gray-700 w-1/2">تعداد اسکناس ۱۰,۰۰۰ تومانی:</label>
+                <input type="number" id="note10000" min="0" value="0"
+                       class="w-1/2 p-2 border border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-center text-lg font-semibold text-gray-800">
+            </div>
+        </div>
+
+        <div class="mt-8 text-center bg-gray-100 p-6 rounded-lg shadow-md">
+            <p class="text-xl font-semibold text-gray-700">مجموع کل:</p>
+            <p id="totalAmount" class="text-4xl font-extrabold text-blue-600 mt-2">۰ تومان</p>
+        </div>
+
+        <div class="mt-8 space-y-4">
+            <button id="whatToBuyButton"
+                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg
+                           transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 flex items-center justify-center">
+                <span class="text-xl mr-2">✨</span> پیشنهاد خرید
             </button>
-            <div class="hidden md:flex space-x-6 space-x-reverse">
-                <a href="#" class="hover:text-pink-500">خانه</a>
-                <a href="#products" class="hover:text-pink-500">محصولات</a>
-                <a href="#" class="hover:text-pink-500">درباره ما</a>
-                <a href="#" class="hover:text-pink-500">تماس با ما</a>
-            </div>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-            <a href="#" class="block px-4 py-3 text-sm hover:bg-pastel-pink">خانه</a>
-            <a href="#products" class="block px-4 py-3 text-sm hover:bg-pastel-pink">محصولات</a>
-            <a href="#" class="block px-4 py-3 text-sm hover:bg-pastel-pink">درباره ما</a>
-            <a href="#" class="block px-4 py-3 text-sm hover:bg-pastel-pink">تماس با ما</a>
+            <button id="moneyFactButton"
+                    class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg
+                           transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 flex items-center justify-center">
+                <span class="text-xl mr-2">✨</span> حقیقت جالب پول
+            </button>
         </div>
-    </header>
 
-    <main class="container mx-auto px-4 py-8">
-
-        <section class="text-center mb-12 fade-in">
-             <img src="https://placehold.co/150x150/fce4ec/6a4a5a?text=^_^" alt="[تصویر بامزه]" class="mx-auto mb-4 rounded-full shadow-lg border-4 border-white">
-            <h1 class="text-3xl md:text-4xl font-bold mb-3 text-cute-dark">به دنیای کیوت ما خوش آمدید!</h1>
-            <p class="text-lg text-gray-600 mb-6">خاص‌ترین و بامزه‌ترین لوازم تحریر رو اینجا پیدا کن.</p>
-            <a href="#products" class="bg-cute-accent text-white px-8 py-3 rounded-full font-semibold hover:bg-cute-accent-dark transition duration-300 shadow-md">مشاهده محصولات</a>
-        </section>
-
-        <section id="products" class="mb-12">
-            <h2 class="text-2xl font-bold text-center mb-8 text-cute-dark">محصولات جدید و کیوت</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
-
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 fade-in" style="animation-delay: 0.1s;">
-                    <img src="https://placehold.co/300x300/e3f2fd/6a4a5a?text=دفترچه" alt="[تصویر دفترچه یادداشت بامزه]" class="w-full h-40 object-cover" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=خطا در بارگذاری'">
-                    <div class="p-4">
-                        <h3 class="font-semibold mb-1 text-cute-dark">دفترچه طرح گربه</h3>
-                        <p class="text-sm text-gray-500 mb-2">یه دفترچه نرم و دوست‌داشتنی</p>
-                        <span class="font-bold text-pink-500">۴۵٬۰۰۰ تومان</span>
-                        <button class="mt-3 w-full bg-cute-accent text-white text-sm py-2 rounded-md hover:bg-cute-accent-dark transition duration-300">افزودن به سبد</button>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 fade-in" style="animation-delay: 0.2s;">
-                    <img src="https://placehold.co/300x300/fce4ec/6a4a5a?text=مداد" alt="[تصویر ست مداد رنگی پاستلی]" class="w-full h-40 object-cover" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=خطا در بارگذاری'">
-                    <div class="p-4">
-                        <h3 class="font-semibold mb-1 text-cute-dark">ست مداد پاستلی</h3>
-                        <p class="text-sm text-gray-500 mb-2">رنگ‌های ملایم و زیبا</p>
-                        <span class="font-bold text-pink-500">۶۰٬۰۰۰ تومان</span>
-                         <button class="mt-3 w-full bg-cute-accent text-white text-sm py-2 rounded-md hover:bg-cute-accent-dark transition duration-300">افزودن به سبد</button>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 fade-in" style="animation-delay: 0.3s;">
-                    <img src="https://placehold.co/300x300/ede7f6/6a4a5a?text=پاک‌کن" alt="[تصویر پاک‌کن‌های فانتزی]" class="w-full h-40 object-cover" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=خطا در بارگذاری'">
-                    <div class="p-4">
-                        <h3 class="font-semibold mb-1 text-cute-dark">پاک‌کن‌های فانتزی</h3>
-                        <p class="text-sm text-gray-500 mb-2">طرح‌های متنوع و بامزه</p>
-                        <span class="font-bold text-pink-500">۱۵٬۰۰۰ تومان</span>
-                         <button class="mt-3 w-full bg-cute-accent text-white text-sm py-2 rounded-md hover:bg-cute-accent-dark transition duration-300">افزودن به سبد</button>
-                    </div>
-                </div>
-
-                 <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 fade-in" style="animation-delay: 0.4s;">
-                    <img src="https://placehold.co/300x300/fff9c4/6a4a5a?text=چسب" alt="[تصویر چسب نواری طرح‌دار]" class="w-full h-40 object-cover" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=خطا در بارگذاری'">
-                    <div class="p-4">
-                        <h3 class="font-semibold mb-1 text-cute-dark">چسب نواری طرح‌دار</h3>
-                        <p class="text-sm text-gray-500 mb-2">برای خوشگلسازی دفتر و کتاب</p>
-                        <span class="font-bold text-pink-500">۲۵٬۰۰۰ تومان</span>
-                         <button class="mt-3 w-full bg-cute-accent text-white text-sm py-2 rounded-md hover:bg-cute-accent-dark transition duration-300">افزودن به سبد</button>
-                    </div>
-                </div>
-                 </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-pastel-pink text-cute-dark py-8 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p class="mb-2">&copy; ۱۴۰۳ فروشگاه لوازم تحریر Sevooli. تمام حقوق محفوظ است.</p>
-            <div class="flex justify-center space-x-4 space-x-reverse">
-                <a href="#" class="hover:text-pink-500"><span class="lucide">instagram</span></a>
-                <a href="#" class="hover:text-pink-500"><span class="lucide">send</span></a> <a href="#" class="hover:text-pink-500"><span class="lucide">twitter</span></a>
+        <div id="llmResponseContainer" class="mt-8 bg-indigo-50 p-6 rounded-lg shadow-md hidden">
+            <p class="text-lg font-semibold text-indigo-800 mb-2">پاسخ هوش مصنوعی:</p>
+            <div id="llmResponse" class="text-gray-700 leading-relaxed"></div>
+            <div id="llmLoading" class="hidden text-center mt-4">
+                <div class="loading-spinner"></div>
+                <span class="text-blue-600 font-medium">در حال دریافت پاسخ...</span>
             </div>
         </div>
-    </footer>
+
+        <div class="mt-8 text-center">
+            <button id="clearButton"
+                    class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg
+                           transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                پاک کردن
+            </button>
+        </div>
+    </div>
 
     <script>
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Get references to input fields and total display element
+        const note200000Input = document.getElementById('note200000');
+        const note100000Input = document.getElementById('note100000');
+        const note50000Input = document.getElementById('note50000');
+        const note10000Input = document.getElementById('note10000');
+        const totalAmountDisplay = document.getElementById('totalAmount');
+        const clearButton = document.getElementById('clearButton');
+        const whatToBuyButton = document.getElementById('whatToBuyButton');
+        const moneyFactButton = document.getElementById('moneyFactButton');
+        const llmResponseContainer = document.getElementById('llmResponseContainer');
+        const llmResponseDisplay = document.getElementById('llmResponse');
+        const llmLoading = document.getElementById('llmLoading');
 
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            // Change icon based on menu state
-            const icon = menuButton.querySelector('.lucide');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.textContent = 'menu'; // Show menu icon
-            } else {
-                icon.textContent = 'x'; // Show close icon
-            }
-        });
+        // Initialize Firebase (even if not using Firestore, good practice if provided)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
-        // Add fade-in animation to elements when they enter viewport (optional, requires intersection observer)
-        const animatedElements = document.querySelectorAll('.fade-in');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                    observer.unobserve(entry.target); // Optional: stop observing after animation
+        // Firebase initialization is not strictly needed for this app as no persistence is used,
+        // but including the boilerplate as per instructions.
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        // import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        // let app, auth;
+        // if (Object.keys(firebaseConfig).length > 0) {
+        //     app = initializeApp(firebaseConfig);
+        //     auth = getAuth(app);
+        //     if (initialAuthToken) {
+        //         signInWithCustomToken(auth, initialAuthToken).catch(console.error);
+        //     } else {
+        //         signInAnonymously(auth).catch(console.error);
+        //     }
+        // }
+
+
+        /**
+         * Calculates the total amount based on the number of notes entered.
+         * @returns {number} The total amount in Tomans.
+         */
+        function calculateTotal() {
+            const count200000 = parseInt(note200000Input.value) || 0;
+            const count100000 = parseInt(note100000Input.value) || 0;
+            const count50000 = parseInt(note50000Input.value) || 0;
+            const count10000 = parseInt(note10000Input.value) || 0;
+
+            const total = (count200000 * 200000) +
+                          (count100000 * 100000) +
+                          (count50000 * 50000) +
+                          (count10000 * 10000);
+
+            // Format the total with commas for better readability
+            totalAmountDisplay.textContent = total.toLocaleString('fa-IR') + ' تومان';
+            return total;
+        }
+
+        /**
+         * Clears all input fields and resets the total amount.
+         */
+        function clearInputs() {
+            note200000Input.value = 0;
+            note100000Input.value = 0;
+            note50000Input.value = 0;
+            note10000Input.value = 0;
+            calculateTotal(); // Recalculate total after clearing
+            llmResponseContainer.classList.add('hidden'); // Hide LLM response
+            llmResponseDisplay.textContent = ''; // Clear LLM response text
+        }
+
+        /**
+         * Calls the Gemini API to get a text response.
+         * @param {string} prompt The prompt to send to the LLM.
+         * @returns {Promise<string>} The text response from the LLM.
+         */
+        async function getGeminiResponse(prompt) {
+            llmResponseContainer.classList.remove('hidden');
+            llmResponseDisplay.textContent = '';
+            llmLoading.classList.remove('hidden');
+
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will provide this at runtime if empty
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    return text;
+                } else {
+                    console.error("Unexpected LLM response structure:", result);
+                    return "خطا در دریافت پاسخ از هوش مصنوعی. لطفاً دوباره تلاش کنید.";
                 }
-            });
-        }, { threshold: 0.1 }); // Trigger animation when 10% of the element is visible
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                return "خطا در برقراری ارتباط با هوش مصنوعی. لطفاً اتصال اینترنت خود را بررسی کنید.";
+            } finally {
+                llmLoading.classList.add('hidden');
+            }
+        }
 
-        animatedElements.forEach(el => {
-            el.style.animationPlayState = 'paused'; // Pause animation initially
-            observer.observe(el);
-        });
+        /**
+         * Handles the "What can I buy?" button click.
+         */
+        async function handleWhatToBuy() {
+            const total = calculateTotal();
+            const prompt = `Given that I have ${total.toLocaleString('fa-IR')} Iranian Tomans, suggest 3-5 practical and common items or services I could purchase with this amount in Iran. Keep the suggestions concise and realistic for this value. Respond in Persian.`;
+            const response = await getGeminiResponse(prompt);
+            llmResponseDisplay.textContent = response;
+        }
+
+        /**
+         * Handles the "Money Fact" button click.
+         */
+        async function handleMoneyFact() {
+            const total = calculateTotal();
+            const prompt = `Provide an interesting and concise fact about money, currency, or economics, preferably related to the value of ${total.toLocaleString('fa-IR')} Iranian Tomans if possible, or a general fact if specific relation is hard. Respond in Persian.`;
+            const response = await getGeminiResponse(prompt);
+            llmResponseDisplay.textContent = response;
+        }
+
+
+        // Add event listeners to all input fields to recalculate total on change
+        note200000Input.addEventListener('input', calculateTotal);
+        note100000Input.addEventListener('input', calculateTotal);
+        note50000Input.addEventListener('input', calculateTotal);
+        note10000Input.addEventListener('input', calculateTotal);
+
+        // Add event listener to the clear button
+        clearButton.addEventListener('click', clearInputs);
+
+        // Add event listeners for LLM buttons
+        whatToBuyButton.addEventListener('click', handleWhatToBuy);
+        moneyFactButton.addEventListener('click', handleMoneyFact);
+
+        // Initial calculation when the page loads
+        document.addEventListener('DOMContentLoaded', calculateTotal);
     </script>
-
 </body>
 </html>
