@@ -44,25 +44,25 @@
         <div class="space-y-6">
             <div class="flex items-center justify-between bg-purple-50 p-4 rounded-lg shadow-sm">
                 <label for="note200000" class="text-lg font-medium text-gray-700 w-1/2">تعداد اسکناس ۲۰۰,۰۰۰ تومانی:</label>
-                <input type="number" id="note200000" min="0" value="0"
+                <input type="number" id="note200000" min="0"
                        class="w-1/2 p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-center text-lg font-semibold text-gray-800">
             </div>
 
             <div class="flex items-center justify-between bg-blue-50 p-4 rounded-lg shadow-sm">
                 <label for="note100000" class="text-lg font-medium text-gray-700 w-1/2">تعداد اسکناس ۱۰۰,۰۰۰ تومانی:</label>
-                <input type="number" id="note100000" min="0" value="0"
+                <input type="number" id="note100000" min="0"
                        class="w-1/2 p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-lg font-semibold text-gray-800">
             </div>
 
             <div class="flex items-center justify-between bg-green-50 p-4 rounded-lg shadow-sm">
                 <label for="note50000" class="text-lg font-medium text-gray-700 w-1/2">تعداد اسکناس ۵۰,۰۰۰ تومانی:</label>
-                <input type="number" id="note50000" min="0" value="0"
+                <input type="number" id="note50000" min="0"
                        class="w-1/2 p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-center text-lg font-semibold text-gray-800">
             </div>
 
             <div class="flex items-center justify-between bg-yellow-50 p-4 rounded-lg shadow-sm">
                 <label for="note10000" class="text-lg font-medium text-gray-700 w-1/2">تعداد اسکناس ۱۰,۰۰۰ تومانی:</label>
-                <input type="number" id="note10000" min="0" value="0"
+                <input type="number" id="note10000" min="0"
                        class="w-1/2 p-2 border border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-center text-lg font-semibold text-gray-800">
             </div>
         </div>
@@ -143,10 +143,11 @@
          * @returns {number} The total amount in Tomans.
          */
         function calculateTotal() {
-            const count200000 = parseInt(note200000Input.value) || 0;
-            const count100000 = parseInt(note100000Input.value) || 0;
-            const count50000 = parseInt(note50000Input.value) || 0;
-            const count10000 = parseInt(note10000Input.value) || 0;
+            // Use parseFloat for inputs that might be empty, and default to 0
+            const count200000 = parseFloat(note200000Input.value) || 0;
+            const count100000 = parseFloat(note100000Input.value) || 0;
+            const count50000 = parseFloat(note50000Input.value) || 0;
+            const count10000 = parseFloat(note10000Input.value) || 0;
 
             const total = (count200000 * 200000) +
                           (count100000 * 100000) +
@@ -162,10 +163,10 @@
          * Clears all input fields and resets the total amount.
          */
         function clearInputs() {
-            note200000Input.value = 0;
-            note100000Input.value = 0;
-            note50000Input.value = 0;
-            note10000Input.value = 0;
+            note200000Input.value = ''; // Set to empty string
+            note100000Input.value = ''; // Set to empty string
+            note50000Input.value = ''; // Set to empty string
+            note10000Input.value = ''; // Set to empty string
             calculateTotal(); // Recalculate total after clearing
             llmResponseContainer.classList.add('hidden'); // Hide LLM response
             llmResponseDisplay.textContent = ''; // Clear LLM response text
