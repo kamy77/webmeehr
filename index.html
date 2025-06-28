@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>صندوق</title>
+    <title>شمارنده اسکناس پیشرفته (آفلاین)</title>
     
     <!-- PWA Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -40,8 +40,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             background-color: #f0f2f5;
             margin: 0;
-            padding-top: 2rem;
-            padding-bottom: 2rem;
+            padding: 1rem; /* Padding for mobile */
         }
 
         /* --- Custom Component Styles --- */
@@ -49,9 +48,9 @@
             background-color: white;
             border-radius: 1rem;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            padding: 2rem;
+            padding: 1.5rem; /* Padding for mobile */
             width: 100%;
-            max-width: 32rem;
+            max-width: 100%; /* Full width on mobile */
             margin: 0 auto;
         }
         .denomination-row {
@@ -151,8 +150,11 @@
         }
         .actions-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr; /* 2 columns on mobile */
             gap: 1rem;
+        }
+        .full-width-button {
+            grid-column: 1 / -1; /* Span full width */
         }
         .difference-display {
             font-size: 1.5rem;
@@ -194,14 +196,15 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
+            padding: 1rem;
         }
         .modal-content {
             background-color: white;
             padding: 1.5rem;
             border-radius: 1rem;
-            width: 90%;
+            width: 100%;
             max-width: 40rem;
-            max-height: 80vh;
+            max-height: 90vh;
             display: flex;
             flex-direction: column;
         }
@@ -266,7 +269,6 @@
             background-color: #d97706;
         }
         
-        /* --- NEW: Breakdown Styles --- */
         .history-breakdown {
             margin-top: 0.75rem;
             border-top: 1px dashed var(--color-gray-300);
@@ -294,12 +296,41 @@
         .status-shortage { color: var(--color-red-700); background-color: var(--color-red-100); }
         .status-surplus { color: var(--color-green-700); background-color: var(--color-green-100); }
         .status-equal { color: var(--color-blue-700); background-color: var(--color-blue-100); }
+
+        /* --- Responsive Optimizations --- */
+        
+        /* Tablet and larger */
+        @media (min-width: 640px) {
+            body {
+                padding: 2rem;
+            }
+            .card {
+                max-width: 42rem; /* Wider card on tablets */
+                padding: 2rem;
+            }
+        }
+        
+        /* Desktop and larger */
+        @media (min-width: 1024px) {
+            .card {
+                max-width: 48rem; /* Even wider on desktops */
+            }
+            .actions-grid {
+                grid-template-columns: 1fr 1fr 1fr; /* 3 columns for all buttons */
+            }
+            .full-width-button {
+                grid-column: auto; /* Reset full-width span */
+            }
+        }
+
     </style>
 </head>
 <body>
 
     <div class="card">
         
+        <h1 class="text-3xl font-bold text-center mb-8">شمارنده پیشرفته اسکناس</h1>
+
         <div id="denominations-container"></div>
 
         <hr class="my-6">
@@ -326,8 +357,8 @@
             <div class="actions-grid">
                 <button onclick="saveResult()" class="action-button save-button">ذخیره نتیجه</button>
                 <button onclick="showHistory()" class="action-button history-button">مشاهده سوابق</button>
+                <button onclick="resetCalculator()" class="action-button reset-button full-width-button">شروع مجدد</button>
             </div>
-            <button onclick="resetCalculator()" class="action-button reset-button" style="width: 100%; margin-top: 1rem;">شروع مجدد</button>
         </div>
     </div>
 
@@ -469,7 +500,6 @@
                 return;
             }
 
-            // NEW: Capture the breakdown of each denomination
             const breakdown = denominations.map(denom => ({
                 label: denom.label,
                 individual: parseInt(document.getElementById(`d${denom.value}`).value) || 0,
@@ -482,7 +512,7 @@
                 balance: boxBalance,
                 differenceText: differenceEl.textContent,
                 differenceClass: differenceEl.className,
-                breakdown: breakdown // Save the breakdown
+                breakdown: breakdown
             };
 
             let history = JSON.parse(localStorage.getItem('cashCounterHistory')) || [];
@@ -519,11 +549,10 @@
                     year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
                 });
 
-                // NEW: Create HTML for the breakdown details
                 let breakdownHtml = '';
                 if (record.breakdown && Array.isArray(record.breakdown)) {
                     const breakdownDetails = record.breakdown
-                        .filter(b => b.individual > 0 || b.bundle > 0) // Only show notes that were counted
+                        .filter(b => b.individual > 0 || b.bundle > 0)
                         .map(b => `<li>اسکناس ${b.label} تومانی: ${b.individual} تکی, ${b.bundle} دسته</li>`)
                         .join('');
                     
