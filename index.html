@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>صندوق</title>
+    <title>شمارنده اسکناس پیشرفته (آفلاین)</title>
     
     <!-- PWA Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -36,11 +36,20 @@
             --color-yellow-500: #f59e0b;
         }
 
+        /* --- FIX: Universal Box Sizing & Overflow Prevention --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             background-color: #f0f2f5;
             margin: 0;
-            padding: 1rem; /* Padding for mobile */
+            padding: 1rem;
         }
 
         /* --- Custom Component Styles --- */
@@ -48,9 +57,9 @@
             background-color: white;
             border-radius: 1rem;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            padding: 1.5rem; /* Padding for mobile */
+            padding: 1.5rem;
             width: 100%;
-            max-width: 100%; /* Full width on mobile */
+            max-width: 100%;
             margin: 0 auto;
         }
         .denomination-row {
@@ -150,11 +159,11 @@
         }
         .actions-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 columns on mobile */
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
         .full-width-button {
-            grid-column: 1 / -1; /* Span full width */
+            grid-column: 1 / -1;
         }
         .difference-display {
             font-size: 1.5rem;
@@ -298,28 +307,25 @@
         .status-equal { color: var(--color-blue-700); background-color: var(--color-blue-100); }
 
         /* --- Responsive Optimizations --- */
-        
-        /* Tablet and larger */
         @media (min-width: 640px) {
             body {
                 padding: 2rem;
             }
             .card {
-                max-width: 42rem; /* Wider card on tablets */
+                max-width: 42rem;
                 padding: 2rem;
             }
         }
         
-        /* Desktop and larger */
         @media (min-width: 1024px) {
             .card {
-                max-width: 48rem; /* Even wider on desktops */
+                max-width: 48rem;
             }
             .actions-grid {
-                grid-template-columns: 1fr 1fr 1fr; /* 3 columns for all buttons */
+                grid-template-columns: 1fr 1fr 1fr;
             }
             .full-width-button {
-                grid-column: auto; /* Reset full-width span */
+                grid-column: auto;
             }
         }
 
@@ -329,20 +335,21 @@
 
     <div class="card">
         
+
         <div id="denominations-container"></div>
 
-        <hr class="my-6">
+        <hr style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
 
-        <div class="text-center">
-            <h2 class="text-xl font-semibold mb-3">مبلغ کل شمارش شده (ریال)</h2>
+        <div style="text-align: center;">
+            <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;">مبلغ کل شمارش شده (ریال)</h2>
             <div class="total-display">
                 <span id="total-amount">۰</span>
             </div>
         </div>
         
         <div class="comparison-section text-center">
-            <h2 class="text-xl font-semibold mb-3">مقایسه با موجودی صندوق</h2>
-            <div class="input-group mb-3">
+            <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;">مقایسه با موجودی صندوق</h2>
+            <div class="input-group" style="margin-bottom: 0.75rem;">
                 <label class="input-label">موجودی صندوق (ریال)</label>
                 <input type="text" inputmode="numeric" id="cash-box-balance" class="input-field" placeholder="مبلغ را وارد کنید" oninput="handleBalanceInput(event)" style="border: 1px solid var(--color-gray-300); border-radius: 0.5rem;">
             </div>
