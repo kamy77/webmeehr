@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
+    <title>صندوق</title>
+    
     <!-- PWA Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,16 +33,13 @@
             --color-green-700: #047857;
             --color-blue-100: #dbeafe;
             --color-blue-700: #1d4ed8;
+            --color-yellow-500: #f59e0b;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             background-color: #f0f2f5;
             margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
             padding-top: 2rem;
             padding-bottom: 2rem;
         }
@@ -54,8 +52,7 @@
             padding: 2rem;
             width: 100%;
             max-width: 32rem;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
         .denomination-row {
             margin-bottom: 1.5rem;
@@ -109,7 +106,7 @@
             font-size: 1.125rem;
             border: none;
             outline: none;
-            -moz-appearance: textfield; /* Firefox */
+            -moz-appearance: textfield;
         }
         .input-field::-webkit-outer-spin-button,
         .input-field::-webkit-inner-spin-button {
@@ -125,7 +122,7 @@
             cursor: pointer;
             padding: 0.5rem 1rem;
             transition: background-color 0.2s;
-            user-select: none; /* Prevent text selection */
+            user-select: none;
         }
         .stepper-button:hover {
             background-color: var(--color-gray-200);
@@ -137,7 +134,6 @@
             font-weight: 700;
             color: var(--color-indigo-600);
             height: 1.75rem;
-            transition: color 0.3s ease;
         }
         .total-display {
             font-size: 2.25rem;
@@ -148,10 +144,15 @@
             padding: 1rem;
             border-radius: 0.75rem;
         }
-        .comparison-section {
+        .comparison-section, .actions-section {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
             border-top: 1px solid var(--color-gray-200);
+        }
+        .actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
         .difference-display {
             font-size: 1.5rem;
@@ -161,9 +162,8 @@
             margin-top: 0.75rem;
             transition: all 0.3s ease;
         }
-        .reset-button {
+        .action-button {
             width: 100%;
-            background-color: var(--color-red-500);
             color: white;
             font-weight: 700;
             padding: 0.875rem 1rem;
@@ -172,22 +172,122 @@
             cursor: pointer;
             transition: all 0.3s ease-in-out;
         }
-        .reset-button:hover {
-            background-color: var(--color-red-600);
+        .action-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
         }
+        .reset-button { background-color: var(--color-red-500); }
+        .reset-button:hover { background-color: var(--color-red-600); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+        .save-button { background-color: var(--color-blue-700); }
+        .save-button:hover { background-color: #1e40af; box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3); }
+        .history-button { background-color: var(--color-gray-600); }
+        .history-button:hover { background-color: var(--color-gray-800); box-shadow: 0 4px 12px rgba(75, 85, 99, 0.3); }
 
-        /* --- Utility Classes --- */
-        .text-center { text-align: center; }
-        .font-bold { font-weight: 700; }
-        .font-semibold { font-weight: 600; }
-        .text-3xl { font-size: 1.875rem; }
-        .text-xl { font-size: 1.25rem; }
-        .mb-8 { margin-bottom: 2rem; }
-        .mb-3 { margin-bottom: 0.75rem; }
-        .my-6 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
-        .mt-8 { margin-top: 2rem; }
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 40rem;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-gray-200);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-gray-800);
+        }
+        .modal-close-button {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--color-gray-500);
+        }
+        .modal-body {
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .history-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .history-item {
+            background-color: var(--color-gray-100);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .history-item:last-child { margin-bottom: 0; }
+        .history-date {
+            font-weight: 600;
+            color: var(--color-gray-600);
+            margin-bottom: 0.5rem;
+        }
+        .history-details {
+            font-size: 1rem;
+            color: var(--color-gray-800);
+        }
+        .history-details span {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .modal-footer {
+            border-top: 1px solid var(--color-gray-200);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+        .clear-history-button {
+            background-color: var(--color-yellow-500);
+        }
+        .clear-history-button:hover {
+            background-color: #d97706;
+        }
+        
+        /* --- NEW: Breakdown Styles --- */
+        .history-breakdown {
+            margin-top: 0.75rem;
+            border-top: 1px dashed var(--color-gray-300);
+            padding-top: 0.75rem;
+        }
+        .history-breakdown summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--color-indigo-600);
+            outline: none;
+        }
+        .history-breakdown ul {
+            list-style-type: none;
+            padding-right: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-gray-600);
+        }
+        .history-breakdown li {
+            margin-bottom: 0.25rem;
+        }
         
         /* Difference Display States */
         .status-neutral { color: var(--color-gray-500); background-color: var(--color-gray-100); }
@@ -196,19 +296,14 @@
         .status-equal { color: var(--color-blue-700); background-color: var(--color-blue-100); }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen py-8">
+<body>
 
     <div class="card">
         
+        <div id="denominations-container"></div>
 
-        <div id="denominations-container">
-            <!-- Dynamically generated rows will be inserted here -->
-        </div>
-
-        <!-- Divider -->
         <hr class="my-6">
 
-        <!-- Total Amount Display -->
         <div class="text-center">
             <h2 class="text-xl font-semibold mb-3">مبلغ کل شمارش شده (ریال)</h2>
             <div class="total-display">
@@ -216,7 +311,6 @@
             </div>
         </div>
         
-        <!-- Comparison Section -->
         <div class="comparison-section text-center">
             <h2 class="text-xl font-semibold mb-3">مقایسه با موجودی صندوق</h2>
             <div class="input-group mb-3">
@@ -228,17 +322,34 @@
             </div>
         </div>
 
-        <!-- Reset Button -->
-        <div class="mt-8 text-center">
-            <button onclick="resetCalculator()" class="reset-button">
-                شروع مجدد
-            </button>
+        <div class="actions-section">
+            <div class="actions-grid">
+                <button onclick="saveResult()" class="action-button save-button">ذخیره نتیجه</button>
+                <button onclick="showHistory()" class="action-button history-button">مشاهده سوابق</button>
+            </div>
+            <button onclick="resetCalculator()" class="action-button reset-button" style="width: 100%; margin-top: 1rem;">شروع مجدد</button>
         </div>
+    </div>
 
+    <!-- History Modal -->
+    <div id="history-modal" class="modal-overlay" onclick="hideHistory(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 class="modal-title">سوابق شمارش</h2>
+                <button class="modal-close-button" onclick="hideHistory({target: document.getElementById('history-modal')})">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul id="history-list" class="history-list">
+                    <!-- History items will be injected here -->
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button onclick="clearHistory()" class="action-button clear-history-button" style="width:100%">پاک کردن کل سوابق</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Denominations are in Toman for labels, but values are in Rial for calculation.
         const denominations = [
             { value: 50000,   label: '۵,۰۰۰' },
             { value: 100000,  label: '۱۰,۰۰۰' },
@@ -249,7 +360,6 @@
 
         const container = document.getElementById('denominations-container');
 
-        // Create the input rows dynamically
         denominations.forEach(denom => {
             const row = document.createElement('div');
             row.className = 'denomination-row';
@@ -259,17 +369,17 @@
                     <div class="input-group">
                         <label class="input-label">تکی</label>
                         <div class="input-wrapper">
-                            <button class="stepper-button" onclick="changeValue('d${denom.value}', 1)" aria-label="افزایش تکی">+</button>
+                            <button class="stepper-button" onclick="changeValue('d${denom.value}', 1)">+</button>
                             <input type="number" id="d${denom.value}" class="input-field" placeholder="تعداد" min="0" oninput="calculateTotal()">
-                            <button class="stepper-button" onclick="changeValue('d${denom.value}', -1)" aria-label="کاهش تکی">−</button>
+                            <button class="stepper-button" onclick="changeValue('d${denom.value}', -1)">−</button>
                         </div>
                     </div>
                     <div class="input-group">
                         <label class="input-label">دسته ۱۰۰تایی</label>
                         <div class="input-wrapper">
-                            <button class="stepper-button" onclick="changeValue('b${denom.value}', 1)" aria-label="افزایش دسته">+</button>
+                            <button class="stepper-button" onclick="changeValue('b${denom.value}', 1)">+</button>
                             <input type="number" id="b${denom.value}" class="input-field" placeholder="تعداد" min="0" oninput="calculateTotal()">
-                            <button class="stepper-button" onclick="changeValue('b${denom.value}', -1)" aria-label="کاهش دسته">−</button>
+                            <button class="stepper-button" onclick="changeValue('b${denom.value}', -1)">−</button>
                         </div>
                     </div>
                 </div>
@@ -278,27 +388,17 @@
             container.appendChild(row);
         });
 
-        // Function to increment/decrement input values
         function changeValue(inputId, amount) {
             const input = document.getElementById(inputId);
             let currentValue = parseInt(input.value) || 0;
             currentValue += amount;
-            if (currentValue < 0) {
-                currentValue = 0;
-            }
+            if (currentValue < 0) currentValue = 0;
             input.value = currentValue;
-            // Manually trigger the input event to ensure calculateTotal is called
             input.dispatchEvent(new Event('input'));
         }
 
         function convertPersianToEnglish(str) {
-            const persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-            const english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-            let result = String(str);
-            for (let i = 0; i < 10; i++) {
-                result = result.replace(new RegExp(persian[i], 'g'), english[i]);
-            }
-            return result;
+            return String(str).replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
         }
 
         function getNumericValue(formattedString) {
@@ -309,37 +409,21 @@
         function handleBalanceInput(event) {
             const input = event.target;
             const numericValue = getNumericValue(input.value);
-            
-            if (input.value) {
-                input.value = numericValue.toLocaleString('fa-IR');
-            } else {
-                input.value = '';
-            }
-            
+            input.value = numericValue > 0 ? numericValue.toLocaleString('fa-IR') : '';
             calculateTotal();
         }
 
         function calculateTotal() {
             let grandTotal = 0;
-
             denominations.forEach(denom => {
-                const individualInput = document.getElementById(`d${denom.value}`);
-                const bundleInput = document.getElementById(`b${denom.value}`);
-                const subtotalElement = document.getElementById(`subtotal-${denom.value}`);
-                
-                const individualCount = parseInt(individualInput.value) || 0;
-                const bundleCount = parseInt(bundleInput.value) || 0;
-
+                const individualCount = parseInt(document.getElementById(`d${denom.value}`).value) || 0;
+                const bundleCount = parseInt(document.getElementById(`b${denom.value}`).value) || 0;
                 const totalCount = individualCount + (bundleCount * 100);
                 const subtotal = totalCount * denom.value;
-                
                 grandTotal += subtotal;
-
-                subtotalElement.textContent = `${subtotal.toLocaleString('fa-IR')} ریال`;
+                document.getElementById(`subtotal-${denom.value}`).textContent = `${subtotal.toLocaleString('fa-IR')} ریال`;
             });
-
-            const totalAmountElement = document.getElementById('total-amount');
-            totalAmountElement.textContent = grandTotal.toLocaleString('fa-IR');
+            document.getElementById('total-amount').textContent = grandTotal.toLocaleString('fa-IR');
             
             const cashBoxInput = document.getElementById('cash-box-balance');
             const differenceDisplay = document.getElementById('difference-display');
@@ -374,85 +458,109 @@
             calculateTotal();
         }
 
-        window.onload = () => {
-            calculateTotal();
-            setupPWA();
-        };
+        // --- History Functions ---
+        function saveResult() {
+            const totalAmount = document.getElementById('total-amount').textContent;
+            const boxBalance = document.getElementById('cash-box-balance').value || '۰';
+            const differenceEl = document.getElementById('difference-display');
+            
+            if (totalAmount === '۰' && (boxBalance === '۰' || boxBalance === '')) {
+                alert('مقداری برای ذخیره وجود ندارد.');
+                return;
+            }
 
-        // --- PWA Setup ---
-        function setupPWA() {
-            // 1. Create and link Manifest dynamically
-            const manifest = {
-                "name": "شمارنده اسکناس",
-                "short_name": "شمارنده",
-                "description": "شمارنده پیشرفته اسکناس با قابلیت مقایسه موجودی",
-                "start_url": ".",
-                "display": "standalone",
-                "background_color": "#f0f2f5",
-                "theme_color": "#4f46e5",
-                "icons": [
-                    {
-                        "src": "https://placehold.co/192x192/4f46e5/white?text=App",
-                        "sizes": "192x192",
-                        "type": "image/png"
-                    },
-                    {
-                        "src": "https://placehold.co/512x512/4f46e5/white?text=App",
-                        "sizes": "512x512",
-                        "type": "image/png"
-                    }
-                ]
+            // NEW: Capture the breakdown of each denomination
+            const breakdown = denominations.map(denom => ({
+                label: denom.label,
+                individual: parseInt(document.getElementById(`d${denom.value}`).value) || 0,
+                bundle: parseInt(document.getElementById(`b${denom.value}`).value) || 0,
+            }));
+
+            const record = {
+                date: new Date().toISOString(),
+                total: totalAmount,
+                balance: boxBalance,
+                differenceText: differenceEl.textContent,
+                differenceClass: differenceEl.className,
+                breakdown: breakdown // Save the breakdown
             };
-            const manifestString = JSON.stringify(manifest);
-            const manifestBlob = new Blob([manifestString], { type: 'application/json' });
-            const manifestUrl = URL.createObjectURL(manifestBlob);
-            const link = document.createElement('link');
-            link.rel = 'manifest';
-            link.href = manifestUrl;
-            document.head.appendChild(link);
 
-            // 2. Register Service Worker
-            if ('serviceWorker' in navigator) {
-                const swCode = `
-                    const CACHE_NAME = 'cash-counter-cache-v1';
-                    // Since this is a single file app, we only need to cache the root URL.
-                    const urlsToCache = ['./'];
+            let history = JSON.parse(localStorage.getItem('cashCounterHistory')) || [];
+            history.unshift(record);
+            localStorage.setItem('cashCounterHistory', JSON.stringify(history));
+            alert('نتیجه با موفقیت ذخیره شد!');
+        }
 
-                    self.addEventListener('install', event => {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME)
-                                .then(cache => {
-                                    console.log('Opened cache');
-                                    return cache.addAll(urlsToCache);
-                                })
-                        );
-                    });
+        function showHistory() {
+            renderHistory();
+            document.getElementById('history-modal').style.display = 'flex';
+        }
 
-                    self.addEventListener('fetch', event => {
-                        event.respondWith(
-                            caches.match(event.request)
-                                .then(response => {
-                                    // Cache hit - return response
-                                    if (response) {
-                                        return response;
-                                    }
-                                    return fetch(event.request);
-                                })
-                        );
-                    });
-                `;
-                const swBlob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(swBlob);
-
-                navigator.serviceWorker.register(swUrl)
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    }).catch(error => {
-                        console.log('ServiceWorker registration failed: ', error);
-                    });
+        function hideHistory(event) {
+            if (event.target.id === 'history-modal' || event.target.classList.contains('modal-close-button')) {
+                 document.getElementById('history-modal').style.display = 'none';
             }
         }
-    </script>
 
+        function renderHistory() {
+            const historyList = document.getElementById('history-list');
+            const history = JSON.parse(localStorage.getItem('cashCounterHistory')) || [];
+            historyList.innerHTML = '';
+
+            if (history.length === 0) {
+                historyList.innerHTML = '<p style="text-align:center; color: var(--color-gray-500);">سابقه‌ای برای نمایش وجود ندارد.</p>';
+                return;
+            }
+
+            history.forEach(record => {
+                const item = document.createElement('li');
+                item.className = 'history-item';
+                const formattedDate = new Date(record.date).toLocaleString('fa-IR', {
+                    year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+                });
+
+                // NEW: Create HTML for the breakdown details
+                let breakdownHtml = '';
+                if (record.breakdown && Array.isArray(record.breakdown)) {
+                    const breakdownDetails = record.breakdown
+                        .filter(b => b.individual > 0 || b.bundle > 0) // Only show notes that were counted
+                        .map(b => `<li>اسکناس ${b.label} تومانی: ${b.individual} تکی, ${b.bundle} دسته</li>`)
+                        .join('');
+                    
+                    if(breakdownDetails) {
+                        breakdownHtml = `
+                            <details class="history-breakdown">
+                                <summary>مشاهده جزئیات شمارش</summary>
+                                <ul>${breakdownDetails}</ul>
+                            </details>
+                        `;
+                    }
+                }
+
+                item.innerHTML = `
+                    <p class="history-date">${formattedDate}</p>
+                    <div class="history-details">
+                        <span>مبلغ شمارش شده: ${record.total} ریال</span>
+                        <span>موجودی صندوق: ${record.balance} ریال</span>
+                        <span class="${record.differenceClass}" style="padding: 0.25rem 0.5rem; border-radius: 0.5rem; text-align: center; margin-top: 0.5rem;">${record.differenceText}</span>
+                    </div>
+                    ${breakdownHtml}
+                `;
+                historyList.appendChild(item);
+            });
+        }
+
+        function clearHistory() {
+            if (confirm('آیا از پاک کردن کل سوابق مطمئن هستید؟')) {
+                localStorage.removeItem('cashCounterHistory');
+                renderHistory();
+            }
+        }
+
+        window.onload = () => {
+            calculateTotal();
+            // PWA Setup would go here if needed
+        };
+    </script>
 </body>
 </html>
